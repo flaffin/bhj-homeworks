@@ -1,60 +1,71 @@
-// const hole = document.getElementById("hole-game");
+// Вариант 1
 
-// const holleClass = className;
+let hole = document.getElementsByClassName('hole');
 
-// console.log(document.div.className);
+let deadSum = 0;
+let lostSum = 0;
 
-
-let hole = className = 'hole';
-
-console.log(hole);
-
-// getHole = index => document.getElementById(`hole${index}`),
-//     deactivateHole = index =>
-//       getHole( index ).className = 'hole',
-//     activateHole = index =>
-//       getHole( index ).className = 'hole hole_has-mole',
+for (let i = 0; i < 9; i++){
 
 
+    hole[i].onclick = function(){
 
-// const dead = document.getElementById("dead");
-// const lost = document.getElementById("lost");
-
-// let deadCalk = parseInt(dead.textContent);
-// let lostCalk = parseInt(lost.textContent);
-
-// console.log(deadCalk + 1);
-// console.log(lostCalk + 1);
-
-
-
-// const string = Array.from("holle9");
-
-// index = string[5];
-// console.log(string[5]);
-
-
-// function getHole(index){
-
-
-// }
-
-// hole.onclick = function(){
-
-//     hole.classList.contains( 'hole_has-mole' );
-
-//     deadCalk = deadCalk + 1;
-//     dead.textContent = deadCalk;
-// }
+        if (hole[i].classList.contains('hole_has-mole')){
+            deadSum = deadSum + 1;
+            
+            if (deadSum === 10) {
+                alert('ПОБЕДА!');
+                deadSum = 0;
+                lostSum = 0;
+            }
+        }
+        else {
+            lostSum = lostSum + 1;
+            if (lostSum === 5) {
+                alert('Вы проиграли');
+                deadSum = 0;
+                lostSum = 0;
+            }
+        }
+        dead.textContent = deadSum;
+        lost.textContent = lostSum;
+    }
+}
 
 
+// Вариант 2 с использованием делегирования
 
-// Советы
-// Чтобы не создавать для каждой лунки отдельную переменную, напишите функцию getHole( index ), 
-// которая по индексу будет возвращать нужный элемент. Обратите внимание, что идентификаторы лунок располагают для такого подхода
-// Используйте цикл для задания обработчика для каждой лунки.
-// Для проверки на наличие того или иного класса, используйте метод includes:
-// hole.className.includes( 'hole_has-mole' );
-// Более удобный вариант - использовать объект classList, с которым вы познакомитесь позднее. Он содержит удобный метод contains:
 
-// hole.classList.contains( 'hole_has-mole' );
+// let deadSum = 0;
+// let lostSum = 0;
+
+// function moleDead(event) {
+
+// if (event.target.classList.contains('hole_has-mole')){
+
+//                     deadSum = deadSum + 1;
+                    
+//                     if (deadSum === 10) {
+//                         alert('ПОБЕДА!');
+//                         deadSum = 0;
+//                         lostSum = 0;
+//                     }
+//                 }
+//                 else {
+//                     lostSum = lostSum + 1;
+//                     if (lostSum === 5) {
+//                         alert('Вы проиграли');
+//                         deadSum = 0;
+//                         lostSum = 0;
+//                     }
+//                 }
+//                 dead.textContent = deadSum;
+//                 lost.textContent = lostSum;
+//             }
+
+   
+//   const holeParent = document.querySelector('.hole-game');
+//   holeParent.addEventListener('click', moleDead);
+
+
+
