@@ -63,11 +63,18 @@ menuMainArray.forEach((element) => {
     menuLinkArray.forEach((el) => {
     
     function siteMenu(){
-    menuSubArray.forEach((e) => e.className = "menu menu_sub");
 
-    if (el.nextElementSibling){
-    el.nextElementSibling.className = "menu menu_sub menu_active";
-    }} 
+        if (el.nextElementSibling.className === "menu menu_sub menu_active"){
+            el.nextElementSibling.className = "menu menu_sub";
+            return;
+         }
+
+         menuSubArray.forEach((e) =>  e.className = "menu menu_sub");
+
+        if (el.nextElementSibling){
+        el.nextElementSibling.className = "menu menu_sub menu_active";
+        };
+    }
 
     el.addEventListener('click', siteMenu);
     });
