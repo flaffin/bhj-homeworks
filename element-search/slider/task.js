@@ -49,7 +49,10 @@ let length = sliderItemArray.length;
         sliderDotArray.forEach((e) => {
         
             function imagDot() {
+               
+                sliderItemArray[index].className = "slider__item";
                 sliderDotArray[index].className = "slider__dot";
+                
                 index = sliderDotArray.indexOf(e);
                 forAll(index);
             }
