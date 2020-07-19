@@ -12,7 +12,8 @@ const cartProductsArray = Array.from(cartProducts);
 
 function seeMenu (){
 
-    cartProductsQ = document.querySelector('.cart');
+    // cartProductsQ = document.querySelector('.cart');
+    cartProductsQ = document.querySelector('.cart__products');
     let wwwArray = Array.from(cartProductsQ.childNodes);
 
         let ansver = wwwArray.some((el) => {
@@ -34,7 +35,7 @@ productQuantityControlArray.forEach((element) => {
             for (let i = 0; i < child.length; i++){
                 if (child[i].className === "product__quantity-value"){
                     let number = Number(child[i].textContent)
-                    if ((element.className.includes('dec')) && (number >= 1)) {
+                    if ((element.className.includes('dec')) && (number >= 2)) {
                         child[i].textContent = number - 1;
                     } else if (element.className.includes('inc')) {
                         child[i].textContent = number + 1;
@@ -68,7 +69,8 @@ productAddArray.forEach((el) => {
 
             let idEl = Number(el.closest('.product').getAttribute('data-id'));
 
-            cartProductsQ = document.querySelector('.cart');
+            // cartProductsQ = document.querySelector('.cart');
+            cartProductsQ = document.querySelector('.cart__products');
 
             let wwwArray = Array.from(cartProductsQ.childNodes);
         
@@ -85,29 +87,36 @@ productAddArray.forEach((el) => {
                                 });
 
                             changeTextEl.textContent = productCount.textContent;
-                             if (productCount.textContent === '0'){
-                                 wwwArray[i].remove();
+                            //  Удаление из корзины, если значение = 0
+                            // if (productCount.textContent === '0'){
+                            //      wwwArray[i].remove();
 
-                                 seeMenu ();
-                                return;
-                            }
+                            //      seeMenu ();
+                            //     return;
+                            // }
                             return;
                         }
                     } 
                 }
           
-                if (productCount.textContent === '0'){
-                    return;
-                }
-                    cartProducts.insertAdjacentHTML('afterend', `
+                // if (productCount.textContent === '0'){
+                    
+                //     return;
+                // }
+                // afterend
+                    cartProducts.insertAdjacentHTML('afterBegin', `
                     <div class="cart__product"  data-id= ${idEl}>
                         <img class="cart__product-image" src= ${src}>
                             <div class="cart__product-count">${productCount.textContent}</div>
                                 </div>
                     `);
 
-                cartProductsQ = document.querySelector('.cart');
-                let nextNew = cartProducts.nextElementSibling;
+                // cartProductsQ = document.querySelector('.cart');
+                cartProductsQ = document.querySelector('.cart__products');
+
+                // let nextNew = cartProducts.nextElementSibling;
+                let nextNew = cartProducts.firstElementChild;
+                
                 nextNew.setAttribute('style', 'display: inline-block');
                
                 cartProductsQ.setAttribute('style', 'display: ');
