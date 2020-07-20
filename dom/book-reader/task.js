@@ -15,19 +15,27 @@ sizeArray.forEach((el) => {
 
 sizeArray.forEach((e) => {
 
+
     function choiceSize(){
+
+        sizeArray[0].className = 'font-size font-size_small';
+        sizeArray[1].className = 'font-size font-size';
+        sizeArray[2].className = 'font-size font-size_big';
 
         if (e.className === "font-size font-size_small"){
 
-          e.className === "font-size font-size_small_active"
+          e.className = "font-size font-size_active"
             book.className = "book book_fs-small";
           
+        }
+         if (e.className === "font-size font-size"){
 
-        } else if (e.className === "font-size font-size_active"){
+            e.className = "font-size font-size_active"
             book.className = "book";
+        } 
+         if (e.className === "font-size font-size_big"){
 
-        } else if (e.className === "font-size font-size_big"){
-           
+            e.className = "font-size font-size_active"
             book.className = "book book_fs-big";
         }
      
@@ -46,24 +54,44 @@ colorArray.forEach((el) => {
         function choiceColor (){
         let parentColor = el.closest('div');
 
+        colorArray[0].className = 'color color_black';
+        colorArray[1].className = 'color color_gray';
+        colorArray[2].className = 'color color_whitesmoke';
+     
         if(parentColor.className === "book__control book__control_color"){
            
             if (el.className === "color color_gray"){
+                el.className = "color color_gray color_active"
                 book.className = "book_color-gray";
-            } else if (el.className === "color color_black color_active"){
+
+            } 
+            if (el.className === "color color_black"){
+                el.className = "color color_black color_active"
                 book.className = "book";
-            } else if (el.className === "color color_whitesmoke"){
+
+            } 
+             if (el.className === "color color_whitesmoke"){
+                el.className = "color color_whitesmoke color_active"
                 book.className = "book_color-whitesmoke";
             }
-
         } 
+
+        sizeArray[0].className = 'color color_black';
+        sizeArray[1].className = 'color color_gray';
+        sizeArray[2].className = 'color color_white';
+
         if (parentColor.className === "book__control book__control_background") {
             
             if (el.className === "color color_black"){
+                el.className = "color color_black color_active"
                 book.className = "book_bg-black";
-            } else if (el.className === "color color_gray"){
+            } 
+            if (el.className === "color color_gray"){
+                el.className === "color color_gray color_active"
                 book.className = "book_bg-gray";
-            } else if (el.className === "color color_white color_active"){
+            } 
+            if (el.className === "color color_white color_active"){
+                el.className = "color color_white color_active"
                 book.className = "book";
             }
         }

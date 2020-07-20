@@ -36,33 +36,33 @@ const rotatorCaseArray = Array.from(rotatorCase);
 
 let length = rotatorCaseArray.length;
 
-function cycleWord(){
 
+let i=0;
 
-        rotatorCaseArray.forEach((element) => {
+function word(){
 
-        let time = element.getAttribute('data-speed');
-        element.style.color = element.getAttribute('data-color');
+    if (i === (length - 1)){
+        i=0
+    }
 
+    let time = rotatorCaseArray[i].getAttribute('data-speed');
 
-            function word (){
+    rotatorCaseArray[i].style.color = rotatorCaseArray[i].getAttribute('data-color');
 
-                rotatorCaseArray.forEach((el) => {
-                    el.className = "rotator__case";
-                });
-      
-                element.className = "rotator__case rotator__case_active";
-        // let e = rotatorCaseArray.indexOf(element);
-        // console.log(e);
-        // console.log(element.textContent);
-        // console.log(time);
-                element.style.color = element.getAttribute('data-color');
+        function wordWord(){
+
+            rotatorCaseArray.forEach((el) => {
+                el.className = "rotator__case";
+            });
         
-            }
+             rotatorCaseArray[i].className = "rotator__case rotator__case_active";
 
-        let timerId = setTimeout(word, time); 
-        });
+             i++;
+
+            word()
+
+        }
+        let tId = setTimeout(wordWord, time);
 
 }
-
- let timerInt = setInterval(cycleWord, 3000); 
+word();
