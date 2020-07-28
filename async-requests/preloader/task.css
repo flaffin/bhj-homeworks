@@ -3,7 +3,12 @@ body {
 }
 .item {
   display: flex;
+  width: 200px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+          
 }
+
 
 .item__code {
   margin-right: 5px;
