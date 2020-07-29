@@ -10,6 +10,7 @@ const productAddArray = Array.from(productAdd);
 const cartProducts = document.querySelector('.cart__products');
 const cartProductsArray = Array.from(cartProducts);
 
+
 function seeMenu (){
 
     // cartProductsQ = document.querySelector('.cart');
@@ -85,29 +86,21 @@ productAddArray.forEach((el) => {
                                 let changeTextEl = changeText.find((el) => {
                                     return el.tagName === "DIV";
                                 });
-
-                            changeTextEl.textContent = productCount.textContent;
-                            //  Удаление из корзины, если значение = 0
-                            // if (productCount.textContent === '0'){
-                            //      wwwArray[i].remove();
-
-                            //      seeMenu ();
-                            //     return;
-                            // }
+                            
+                                
+                            changeTextEl.textContent = Number(changeTextEl.textContent) + Number(productCount.textContent);
                             return;
                         }
-                    } 
-                }
-          
-                // if (productCount.textContent === '0'){
-                    
-                //     return;
-                // }
-                // afterend
+                } 
+            }
+                
+                productQuantity = 
+
                     cartProducts.insertAdjacentHTML('afterBegin', `
                     <div class="cart__product"  data-id= ${idEl}>
                         <img class="cart__product-image" src= ${src}>
                             <div class="cart__product-count">${productCount.textContent}</div>
+                            <a href="#" class="task__remove">удалить</a>
                                 </div>
                     `);
 
@@ -121,8 +114,21 @@ productAddArray.forEach((el) => {
                
                 cartProductsQ.setAttribute('style', 'display: ');
 
-    }
+                    const taskRemove = document.getElementsByClassName('task__remove');
+                    const taskRemoveArray = Array.from(taskRemove);
 
+                    taskRemoveArray.forEach((elem) => { 
+
+                        function deliteEl(){
+                        let deliteEl = elem.closest('div')
+                        deliteEl.remove();
+                        } 
+
+                    elem.addEventListener('click', deliteEl);
+                    });
+            }
     el.addEventListener('click', addBasket);
 
 });
+
+

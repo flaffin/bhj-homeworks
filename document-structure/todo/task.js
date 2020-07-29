@@ -3,7 +3,7 @@ const tasksAdd = document.getElementById('tasks__add');
 const taskInput = document.getElementById('task__input');
 const tasksList = document.getElementById('tasks__list');
 
-//    localStorage.clear();
+    //   localStorage.clear();
 
 tasksAdd.onclick = function (){
     return false;
@@ -11,7 +11,7 @@ tasksAdd.onclick = function (){
 
 let mas = [];
 let j = 0;
-let obj = new Object;
+let obj = [];
 
 function addTask(){
 
@@ -20,7 +20,7 @@ function addTask(){
         if (! (reternObj === null)){
 
             let obj = reternObj;
-            j = Object.keys(reternObj).length;
+            j = obj.length
             let str = taskInput.value;
 
                 tasksList.insertAdjacentHTML('afterBegin', `
@@ -33,14 +33,16 @@ function addTask(){
                     
                     `);
 
+            taskInput.value = '';
             obj[j] = str;
             let serialObj = JSON.stringify(obj);
             localStorage.setItem("myKey", serialObj);
              delit(j);    
 
         } else {
-    
+
              let str = taskInput.value;
+             taskInput.value = '';
 
                 tasksList.insertAdjacentHTML('afterBegin', `
                 <div class="task">
@@ -64,19 +66,14 @@ tasksAdd.addEventListener('click', addTask);
 function delit(j){
 
     mas[j] = document.querySelector('.task__remove');
+    console.log(mas[j])
         function taskRem() {
             this.closest('div').remove()
             let  objNew = JSON.parse(localStorage.getItem("myKey"));
-            delete objNew[j];
+            console.log(j)
+            objNew.splice(j,1)
 
-                    let f = 0;
-                    let objNewNew = new Object;
-                        for (let key in objNew){
-                            objNewNew[f] = objNew[key];
-                            f++
-                        } 
-
-             let serialObj = JSON.stringify(objNewNew);
+            let serialObj = JSON.stringify(objNew);
             localStorage.setItem("myKey", serialObj);
         }
     mas[j].addEventListener('click', taskRem); 
@@ -87,22 +84,24 @@ window.onload = function(){
 
     let  reternObj = JSON.parse(localStorage.getItem("myKey"));
     let j = 0;
-    let objNew = new Object;
+    // let objNew = new Object;
+    let objNew =[];
 
         if (! (reternObj === null)){
 
-            for (let key in reternObj){
+                for (let i=0; i < reternObj.length; i++){
                     tasksList.insertAdjacentHTML('afterBegin', `
                         <div class="task">
                             <div class="task__title">
-                                ${reternObj[key]}
+                                ${reternObj[i]}
+
                             </div>
                             <a href="#" class="task__remove">&times;</a>
                         </div>
                         
                     `);
 
-                objNew[j] = reternObj[key];
+                objNew[j] = reternObj[i];
                 delit(j);
                 j ++ ;
             }
