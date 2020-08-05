@@ -21,42 +21,19 @@ function clickChat(){
 
     let clickChatTime = Date.now();
     chatWidget.className = "chat-widget chat-widget_active";
-    console.log(chatWidget.className)
+    // console.log(chatWidget.className)
 }
 chatWidget.addEventListener('click', clickChat);
 
 
-let date = new Date();
-
-
-    // function loger(){
-
-    //     if ((chatWidget.className === "chat-widget chat-widget_active") && (chatInput.value = " ")){
-            
-    //         let date = new Date();
-    //         let dateH = date.getHours();
-    //             if (dateH < 10) {
-    //                 dateH = '0' + dateH;
-    //             }
-    //         let dateM = date.getMinutes();
-    //             if (dateM < 10) {
-    //                dateM = '0' + dateM;
-    //             }
-            
-    //         messages.innerHTML += `
-    //         <div class="message">
-    //         <div class="message__time">${dateH}:${dateM}</div>
-    //         <div class="message__text">У Вас все хорошо?</div>
-    //     </div>
-    //     `;
-            
-    // }}
-
-    // let timeId = setInterval(loger, 5000);
-
+let timeId;
 
 chatInput.addEventListener('keydown', function(e) {
 
+    if (timeId){
+    clearInterval(timeId);
+    }
+    
     if (e.keyCode === 13) {
         let str = chatInput.value;
         if (str.length === 0){
@@ -93,6 +70,32 @@ chatInput.addEventListener('keydown', function(e) {
         messages.scrollIntoView({block: "end", inline: "nearest"});
         }
     
+    }
+
+
+    function loger(){
+
+        let date = new Date();
+        let dateH = date.getHours();
+
+            if (dateH < 10) {
+                dateH = '0' + dateH;
+            }
+        let dateM = date.getMinutes();
+            if (dateM < 10) {
+                dateM = '0' + dateM;
+            }
+                
+                messages.innerHTML += `
+                <div class="message">
+                <div class="message__time">${dateH}:${dateM}</div>
+                <div class="message__text">У Вас все хорошо?</div>
+            </div>
+            `;
 
     }
+
+     timeId = setInterval(loger, 30000);
+    
+    
   });
